@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import LoginPage from '@/views/LoginPage.vue'
 import Productos from '@/views/productoPage.vue'
+import LogoutPage from '@/views/LogoutPage.vue'
+
 //import UserList from "@/components/UserList";
 //import UserDetails from "@/components/UserDetails";
 
@@ -9,23 +11,27 @@ const routes = [
   {
     path: "/HomeRoot",
     name: "HomeRoot",
-    component: Home
+    component: Home,
+    // redirect: '/pinned-article'
   },
   {
     path: "/",
     name: "LoginPage",
     component:LoginPage
+   
   },
   {
     path: "/productoPage",
     name: "productoPage",
-    component:Productos
+    component:Productos,
+    // alias: '/pinned-article',
+   
   },
-  /*{
-    path: "/users",
-    name: "UserList",
-    component: UserList
-  },*/
+  {
+    path: "/LogoutPage",
+    name: "LogoutPage",
+    component: LogoutPage
+  },
   // {
   //   path: "/users/:userId",
   //   name: "UserDetails",
