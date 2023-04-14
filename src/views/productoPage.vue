@@ -79,12 +79,14 @@
         </div>
     </template>
 </div>
-   
+<footerComp></footerComp>
 </template>
 
 <script>
 
 import headerComp from '../components/headerComp.vue'
+
+import footerComp from '../components/footerComp.vue'
 import carritoCompra from '../components/carritoCompra.vue'
 
 import {mapState, mapMutations} from 'vuex'
@@ -95,6 +97,8 @@ export default {
     name: "productoPage",
     components:{
         headerComp,
+
+        footerComp
         carritoCompra
     },
     data: function() {
