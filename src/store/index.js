@@ -77,6 +77,10 @@ export default createStore({
             }
           
           },
+          inputHandler(state, cantidad){
+            console.log(cantidad);
+
+          },
 
           cargarProducto(state, arreglo){
              state.productoTotal=arreglo;

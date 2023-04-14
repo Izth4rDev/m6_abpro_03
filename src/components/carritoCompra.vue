@@ -28,7 +28,7 @@
                                 <i class="fas fa-minus"></i>
                                 </button>
 
-                                <input id="form1" min="1" name="quantity" v-model="carro.cantidad" v-on:click="calcularProducto(carro)"  type="number"
+                                <input id="form1" min="1" name="quantity" v-model="carro.cantidad" v-on:input="calcularProducto(carro)" type="number"
                                 class="form-control form-control-sm" />
                                 
                                 
@@ -82,7 +82,8 @@ methods: {
     ...mapMutations(['eliminarProducto']),
     ...mapMutations(['vaciarCarro']),
     ...mapMutations(['calcularProducto']),
-    ...mapMutations(['procesarPago'])
+    ...mapMutations(['procesarPago']),
+    ...mapMutations(['inputHandler']),
 
 }  
 

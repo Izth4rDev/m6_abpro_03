@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import LoginPage from '@/views/LoginPage.vue'
 import Productos from '@/views/productoPage.vue'
-import LogoutPage from '@/views/LogoutPage.vue'
+
 
 //import UserList from "@/components/UserList";
 //import UserDetails from "@/components/UserDetails";
@@ -26,12 +26,7 @@ const routes = [
     component:Productos,
     // alias: '/pinned-article',
    
-  },
-  {
-    path: "/LogoutPage",
-    name: "LogoutPage",
-    component: LogoutPage
-  },
+  }
   // {
   //   path: "/users/:userId",
   //   name: "UserDetails",
