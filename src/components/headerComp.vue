@@ -5,14 +5,37 @@
         </div>
         <div class="d-flex">
             <nav>
-                <ul id="list-contenedor" class="d-flex justify-content-around">
+                <ul id="list-contenedor" class="d-flex justify-content-around align-items-center">
                     <router-link class="nav-link px-3" to="/HomeRoot">Inicio</router-link>
                     <router-link class="nav-link px-3" to="/productoPage">Productos</router-link>
-                    <router-link class="nav-link px-3" to="/LogoutPage">Logout</router-link>
+                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                             Logout
+                        </button>
                 </ul>
             </nav>
         </div>
     </div>
+    <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Logout</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Esta seguro que desea salir
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+        <button type="button" v-on:click="logout" class="btn btn-success" data-bs-dismiss="modal">Si</button>
+      </div>
+    </div>
+  </div>
+</div>
 </template>
 
 
@@ -22,9 +45,9 @@ export default {
 
     },
     methods:{
-        Home(){
-            this.$router.push('/HomeRoot');
-        }
+       logout(){
+        this.$router.push('/');
+       }
     }
 }
 </script>
