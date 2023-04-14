@@ -1,15 +1,15 @@
 <template>
     <headerComp></headerComp>
-     <section class="carrito__compras">
+    <carritoCompra></carritoCompra>
+    
+
+     <!-- <section class="carrito__compras">
         <div class="container h-100 py-5">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12">
                         <div class="d-flex justify-content-between align-items-center mb-4">
                         <h3 class="fw-normal mb-0 text-black">Carrito de compra</h3>
-                    <!-- <div>
-                        <p class="mb-0"><span class="text-muted">Ordenado por:</span> <a href="#!" class="text-body">precio <i
-                            class="fas fa-angle-down mt-1"></i></a></p>
-                    </div> -->
+   
                     </div>
 
                     <div class="card rounded-3 mb-4">
@@ -57,7 +57,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
    <!-- Buscar productos    -->
    <div class="seccion__buscar">
@@ -85,74 +85,91 @@
 <script>
 
 import headerComp from '../components/headerComp.vue'
+
 import footerComp from '../components/footerComp.vue'
+import carritoCompra from '../components/carritoCompra.vue'
+
+import {mapState, mapMutations} from 'vuex'
+//import store from 'store';
 
 export default {
    
     name: "productoPage",
     components:{
         headerComp,
+
         footerComp
+        carritoCompra
     },
     data: function() {
         return {
-        producto: [],
-        newProducts:[],
-        productoTotal: [],
+        producto2: [],
+        // newProducts:[],
+        productoTotal2:[],
         inputBuscador: ''
         };
         },
+
+    computed: {
+    ...mapState(['newProducts']),
+    ...mapState(['productoTotal']),
+    ...mapState(['producto'])
+
+    },    
     methods:{
-        calcularProducto: function (elemento){
-            elemento.total = elemento.cantidad*elemento.price;
-            console.log (elemento.total)
-        },
-            registrarProducto: function (producto){    
-                //retorna true o false si este objeto existe el arreglo
-                let existe = this.newProducts.some((element)=>{ 
-                    return producto.id == element.id
-                });
+        ...mapMutations(['registrarProducto']),
+        //...mapMutations({add:'aquitoy'}),
+    
+        // calcularProducto: function (elemento){
+        //     elemento.total = elemento.cantidad*elemento.price;
+        //     console.log (elemento.total)
+        // },
+            // registrarProducto: function (producto){    
+            //     //retorna true o false si este objeto existe el arreglo
+            //     let existe = this.newProducts.some((element)=>{ 
+            //         return producto.id == element.id
+            //     });
 
-            if(!existe){
+            // if(!existe){
 
-                let product ={
-                    id:producto.id,
-                    name: producto.name,
-                    description: producto.description,
-                    price: producto.price,
-                    stock: producto.stock,
-                    image: producto.image,
-                    cantidad: 1,
-                    total: producto.price,
-                }
+            //     let product ={
+            //         id:producto.id,
+            //         name: producto.name,
+            //         description: producto.description,
+            //         price: producto.price,
+            //         stock: producto.stock,
+            //         image: producto.image,
+            //         cantidad: 1,
+            //         total: producto.price,
+            //     }
 
-                this.newProducts.push(product);
+            //     this.newProducts.push(product);
 
-            }else{
+            // }else{
 
-                this.newProducts = this.newProducts.map((element)=>{
+            //     this.newProducts = this.newProducts.map((element)=>{
 
-                    if(element.id === producto.id){
+            //         if(element.id === producto.id){
 
-                        element.cantidad = element.cantidad+1; 
-                        element.total = element.cantidad*element.price;
-                        return element;
+            //             element.cantidad = element.cantidad+1; 
+            //             element.total = element.cantidad*element.price;
+            //             return element;
 
-                    }else{
+            //         }else{
                         
-                        return element;
-                    }
+            //             return element;
+            //         }
 
-                })
-            }
-            },
-            eliminarProducto: function (producto){
+            //     })
+            // }
+            // },
+            // eliminarProducto: function (producto){
 
-            this.newProducts = this.newProducts.filter((element)=>{
-                return element.id != producto.id;
+            // this.newProducts = this.newProducts.filter((element)=>{
+            //     return element.id != producto.id;
 
-            })
-            },
+            // })
+            // },
             buscarProducto: function (){
                 if (this.inputBuscador === ''){
                 this.producto = this.productoTotal;
@@ -169,9 +186,9 @@ export default {
                 }
                 
             },
-             vaciarCarro(){
-               this.newProducts = []
-            },
+            //  vaciarCarro(){
+            //    this.newProducts = []
+            // },
             async extraerData() {
                 let resultado;
             try {
@@ -188,10 +205,11 @@ export default {
             }
         },
         async mounted() {
-            this.producto = await this.extraerData();
-            this.productoTotal = this.producto;
+            this.producto2 = await this.extraerData();
+            this.$store.commit('cargarProducto', this.producto2)
+            this.$store.commit('cargarProducto2', this.producto2)
         }
- 
+
     }
   
 </script>
