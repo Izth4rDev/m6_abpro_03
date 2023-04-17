@@ -49,7 +49,7 @@
                     </div>
 
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body d-flex gap-1">
                             <button v-on:click="vaciarCarro" type="button" class="btn-vaciar">Vaciar Carrito</button>
                             <button type="button" class="btn-procesar" v-on:click="procesarPago">Procesar el pago</button>
                         </div>
