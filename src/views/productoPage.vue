@@ -98,7 +98,7 @@ export default {
     components:{
         headerComp,
 
-        footerComp
+        footerComp,
         carritoCompra
     },
     data: function() {

@@ -1,23 +1,26 @@
 <template>  
-    <div class="container-fluid d-flex justify-content-around align-items-center border">
+    <div class="container-fluid d-flex align-items-center border">
         <div id="logo">
             <a v-on:click="Home"><img src="../assets/logo-p.png" alt="" width="250"></a>
         </div>
-        <div class="d-flex">
+        <div class="d-flex ms-auto me-3">
             <nav>
                 <ul id="list-contenedor" class="d-flex justify-content-around align-items-center">
                     <router-link class="nav-link px-3" to="/HomeRoot">Inicio</router-link>
                     <router-link class="nav-link px-3" to="/productoPage">Productos</router-link>
-                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                             Logout
-                        </button>
+                    <!-- <router-link class="nav-link px-3" to=""><img src="../assets/shopping-cart.png" width="18" alt="carrito"></router-link> -->
+                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      <img src="../assets/shopping-cart.png" width="18" alt="carrito">
+                    </button>
+                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      Logout
+                    </button>
                 </ul>
             </nav>
         </div>
+        <!-- <carritoCompra></carritoCompra> -->
     </div>
     <!-- Button trigger modal -->
-
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -42,7 +45,6 @@
 <script>
 export default {
     data (){
-
     },
     methods:{
        logout(){
