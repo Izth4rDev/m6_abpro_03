@@ -1,6 +1,82 @@
 <template>
-    <headerComp></headerComp>
-     <section class="carrito__compras modal" id="carrito__modal">
+    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <img src="../assets/shopping-cart.png" width="18" alt="carrito">
+    </button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Carrito</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container h-100 py-5">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <button type="button" class="btn-close" data-bs-target="carrito__modal" data-bs-dismiss="#carrito__modal" aria-label="Close"></button>
+                        <h3 class="fw-normal mb-0 text-black">Carrito de compra</h3>
+                    <!-- <div>
+                        <p class="mb-0"><span class="text-muted">Ordenado por:</span> <a href="#!" class="text-body">precio <i
+                            class="fas fa-angle-down mt-1"></i></a></p>
+                    </div> -->
+                    </div>
+
+                    <div class="card rounded-3 mb-4">
+                        <div v-for="carro in newProducts" :key="carro.id" class="card-body p-4">
+                            <div class="row d-flex justify-content-between align-items-center">
+                            <div class="col-md-2 col-lg-2 col-xl-2">
+                                <img v-bind:src="carro.image" class="img-fluid rounded-3" alt="Cotton T-shirt">
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-3">
+                                <p class="lead fw-normal mb-2">{{carro.name}}</p>
+                                <p><span class="text-muted">Descripcion: </span>{{ carro.description }}</p>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                <button class="btn btn-link px-2"
+                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                <i class="fas fa-minus"></i>
+                                </button>
+
+                                <input id="form1" min="1" name="quantity" v-model="carro.cantidad" v-on:input="calcularProducto(carro)" type="number"
+                                class="form-control form-control-sm" />
+                                
+
+                                <button class="btn btn-link px-2"
+                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                <h5 class="precio--u">Unidad ${{carro.price}}</h5>
+                                <h5 class="precio--t">Total ${{carro.total}}</h5>
+                            </div>
+                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                <a href="#!" v-on:click="eliminarProducto(carro)" class="text-danger"><i class="fas fa-trash fa-lg"> X </i></a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body d-flex gap-1">
+                            <button v-on:click="vaciarCarro" type="button" class="btn-vaciar">Vaciar Carrito</button>
+                            <button type="button" class="btn-procesar" v-on:click="procesarPago">Procesar el pago</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+        <button type="button" v-on:click="logout" class="btn btn-success" data-bs-dismiss="modal">Si</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <section class="carrito__compras modal" id="carrito__modal">
         <div class="container h-100 py-5">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12">

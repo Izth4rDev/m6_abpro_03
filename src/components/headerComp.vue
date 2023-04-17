@@ -9,19 +9,14 @@
                     <router-link class="nav-link px-3" to="/HomeRoot">Inicio</router-link>
                     <router-link class="nav-link px-3" to="/productoPage">Productos</router-link>
                     <!-- <router-link class="nav-link px-3" to=""><img src="../assets/shopping-cart.png" width="18" alt="carrito"></router-link> -->
-                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#carrito__modal">
-                      <img src="../assets/shopping-cart.png" width="18" alt="carrito">
-                    </button>
                     <!-- <router-link class="nav-link px-3" to="/HomeRoot">Hola usuario1</router-link> -->
-                    
-
+                    <carritoCompra></carritoCompra>
                     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                       Logout
                     </button>
                 </ul>
             </nav>
         </div>
-        <!-- <carritoCompra></carritoCompra> -->
     </div>
     <!-- Button trigger modal -->
 <!-- Modal -->
@@ -46,8 +41,12 @@
 
 
 <script>
+import carritoCompra from './carritoCompra.vue';
 export default {
     data (){
+    },
+    components:{
+      carritoCompra,
     },
     methods:{
        logout(){

@@ -1,8 +1,5 @@
 <template>
     <headerComp></headerComp>
-    <carritoCompra></carritoCompra>
-    
-
      <!-- <section class="carrito__compras">
         <div class="container h-100 py-5">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -86,7 +83,6 @@
 
 import headerComp from '../components/headerComp.vue'
 import footerComp from '../components/footerComp.vue'
-import carritoCompra from '../components/carritoCompra.vue'
 
 import {mapState, mapMutations} from 'vuex'
 //import store from 'store';
@@ -97,7 +93,6 @@ export default {
     components:{
         headerComp,
         footerComp,
-        carritoCompra
     },
     data: function() {
         return {
