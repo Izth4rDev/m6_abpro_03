@@ -39,7 +39,8 @@
                                 </button>
                             </div>
                             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                <h5 class="mb-0">{{carro.price}}-{{carro.total}}</h5>
+                                <h5 class="precio--u">Unidad ${{carro.price}}</h5>
+                                <h5 class="precio--t">Total ${{carro.total}}</h5>
                             </div>
                             <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                 <a href="#!" v-on:click="eliminarProducto(carro)" class="text-danger"><i class="fas fa-trash fa-lg"> X </i></a>
@@ -92,3 +93,37 @@ methods: {
 }
 
 </script>
+<style>
+
+.precio--u{
+color: #F082AC;
+display: inline-block;
+width: 100%;
+font-size: 16px;
+list-style: none;
+padding: 10px 16px;
+text-align: center;
+transition: color 100ms;
+vertical-align: baseline;
+user-select: none;
+-webkit-user-select: none;
+font-family: 'Montserrat', sans-serif;
+}
+
+.precio--t{
+background-color: #F082AC;
+border-radius: 8px;
+color: #FFFFFF;
+width: 100%;
+display: inline-block;
+font-size: 16px;
+list-style: none;
+padding: 10px 16px;
+text-align: center;
+transition: color 100ms;
+vertical-align: baseline;
+user-select: none;
+-webkit-user-select: none;
+font-family: 'Montserrat', sans-serif;
+}
+</style>
