@@ -14,7 +14,7 @@ export default {
 footer {
   background-color: #F082AC;
   margin-top: 5em;
-  padding: 30px;
+  padding: 50px;
   text-align: center;
   font-size: 12px;
 }

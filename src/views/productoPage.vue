@@ -85,7 +85,6 @@
 <script>
 
 import headerComp from '../components/headerComp.vue'
-
 import footerComp from '../components/footerComp.vue'
 import carritoCompra from '../components/carritoCompra.vue'
 
@@ -97,7 +96,6 @@ export default {
     name: "productoPage",
     components:{
         headerComp,
-
         footerComp,
         carritoCompra
     },

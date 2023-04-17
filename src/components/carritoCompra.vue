@@ -1,10 +1,11 @@
 <template>
     <headerComp></headerComp>
-     <section class="carrito__compras">
+     <section class="carrito__compras modal" id="carrito__modal">
         <div class="container h-100 py-5">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12">
                         <div class="d-flex justify-content-between align-items-center mb-4">
+                            <button type="button" class="btn-close" data-bs-target="carrito__modal" data-bs-dismiss="#carrito__modal" aria-label="Close"></button>
                         <h3 class="fw-normal mb-0 text-black">Carrito de compra</h3>
                     <!-- <div>
                         <p class="mb-0"><span class="text-muted">Ordenado por:</span> <a href="#!" class="text-body">precio <i
@@ -30,7 +31,6 @@
 
                                 <input id="form1" min="1" name="quantity" v-model="carro.cantidad" v-on:input="calcularProducto(carro)" type="number"
                                 class="form-control form-control-sm" />
-                                
                                 
 
                                 <button class="btn btn-link px-2"
@@ -88,7 +88,6 @@ methods: {
 
 }  
 
-    
 
 }
 
