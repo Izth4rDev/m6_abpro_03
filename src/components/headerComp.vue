@@ -9,14 +9,11 @@
                     <router-link class="nav-link px-3" to="/HomeRoot">Inicio</router-link>
                     <router-link class="nav-link px-3" to="/productoPage">Productos</router-link>
                     <!-- <router-link class="nav-link px-3" to=""><img src="../assets/shopping-cart.png" width="18" alt="carrito"></router-link> -->
-
                     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#carrito__modal">
                       <img src="../assets/shopping-cart.png" width="18" alt="carrito">
                     </button>
                     <!-- <router-link class="nav-link px-3" to="/HomeRoot">Hola usuario1</router-link> -->
-                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                      <img src="../assets/shopping-cart.png" width="18" alt="carrito">
-                    </button>
+                    
 
                     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                       Logout
