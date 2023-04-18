@@ -31,7 +31,10 @@ data() {
     email: '',
     password: '',
     error: '',
-    };
+    usuarioConectado: 'Invitado',
+    }
+    
+    
 },
 methods: {
      async login() {
@@ -48,10 +51,14 @@ methods: {
             if (this.password === resultado[0].password && this.email === resultado[0].correo) {
                 this.error = 'Inicio de sesión exitoso!'
                 this.clase = 'success'
+                
+                this.$store.commit('grabarUsuario', this.email)
+     
                 this.$router.push('/HomeRoot');
             } else {
                 this.error = 'Error de autenticación. Por favor, verifica tus datos.';
                 this.clase = 'error'
+                this.usuarioConectado = ''
             }
 
             } catch (error) {
