@@ -1,8 +1,5 @@
 <template>
     <headerComp></headerComp>
-    <carritoCompra></carritoCompra>
-    
-
      <!-- <section class="carrito__compras">
         <div class="container h-100 py-5">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -82,8 +79,7 @@
         <p>{{ descripcionModal }}</p>
       </b-modal>
   </template>
-  
-</div>
+  </div>
 
 <footerComp></footerComp>
 </template>
@@ -173,13 +169,14 @@ export default {
 
             // })
             // },
+
             buscarProducto: function (){
                 if (this.inputBuscador === ''){
-                this.producto = this.productoTotal;
+                this.$store.state.producto = this.$store.state.productoTotal;
                 }else {            
                 
                 const searchTerm = this.inputBuscador.toLowerCase();
-                this.producto = this.producto.filter(element => {
+                this.$store.state.producto = this.$store.state.producto.filter(element => {
                 const name1 = element.name.toLowerCase();
                 const description1 = element.description.toLowerCase();
             
