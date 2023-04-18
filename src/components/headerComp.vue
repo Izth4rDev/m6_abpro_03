@@ -53,6 +53,7 @@ llenarUsuario()
 
 <script>
 
+import carritoCompra from './carritoCompra.vue';
 import {mapState} from 'vuex'
 
 export default {
@@ -60,20 +61,13 @@ export default {
     data: function(){
       return {
         usuarioConectado2: '',
+        carritoCompra,
        
       }
       },
      computed:{
      ...mapState(['usuarioConectado'])
      },
-import carritoCompra from './carritoCompra.vue';
-export default {
-    data (){
-    },
-    components:{
-      carritoCompra,
-    },
-
     methods:{
        logout(){
         this.$router.push('/');
