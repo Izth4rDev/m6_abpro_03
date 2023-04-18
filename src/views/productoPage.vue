@@ -62,59 +62,114 @@
         <button type="button" class="btn-buscar" v-on:click="buscarProducto()">Buscar</button>
     </div>
 
-<div class="container-fluid row justify-content-center gap-3 ">
- <template  v-for="fila in $store.state.producto" :key="fila.name">
-        <div class="card col-3 mx-2 mt-4" v-if="fila.stock > 0" style="width: 18rem; margin: 3em;" >  
-                <img v-bind:src="fila.image" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{fila.name}}</h5>
-                    <p class="card-text">Material:{{fila.description}}</p>
-                    <p class="card-text">$ {{fila.price}}</p> 
-                    <p class="card-text">Stock: {{fila.stock}}</p>
-                    <a href="#" v-on:click="registrarProducto(fila)" class="btn-agregar">Agregar</a>
-                </div>
-        </div>
-    </template>
-</div>
+    <div class="container-fluid row justify-content-center gap-3">
+  <template v-for="fila in $store.state.producto" :key="fila.name">
+    <div class="card col-3 mx-2 mt-4" v-if="fila.stock > 0" style="width: 18rem; margin: 3em;">
+      <img v-bind:src="fila.image" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{fila.name}}</h5>
+        <p class="card-text">Material:{{fila.description}}</p>
+        <p class="card-text">$ {{fila.price}}</p>
+        <p class="card-text">Stock: {{fila.stock}}</p>
+        <a href="#" v-on:click="mostrarPopUp(fila)" class="btn-ver-detalles">Ver detalles</a>
+        <a href="#" v-on:click="registrarProducto(fila)" class="btn-agregar">Agregar</a>
+      </div>
+    </div>
+    <b-modal v-model="showModal" title="Detalles del producto" hide-footer>
+        <p>{{ descripcionModal }}</p>
+      </b-modal>
+  </template>
+  </div>
+
 <footerComp></footerComp>
 </template>
 
 <script>
-
 import headerComp from '../components/headerComp.vue'
 import footerComp from '../components/footerComp.vue'
-
-import {mapState, mapMutations} from 'vuex'
-//import store from 'store';
+import carritoCompra from '../components/carritoCompra.vue'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
-   
-    name: "productoPage",
-    components:{
-        headerComp,
-        footerComp,
-    },
-    data: function() {
-        return {
-        producto2: [],
-        // newProducts:[],
-        productoTotal2:[],
-        inputBuscador: ''
-        };
-        },
-
-    computed: {
+  name: "productoPage",
+  components: {
+    headerComp,
+    footerComp,
+    carritoCompra
+  },
+  data: function() {
+    return {
+      producto: [],
+      inputBuscador: '',
+      showModal: false,
+      descripcionModal: ''
+    }
+  },
+  computed: {
     ...mapState(['newProducts']),
     ...mapState(['productoTotal']),
-    //...mapState(['producto'])
-
+    ...mapState(['producto'])
+  },
+  methods: {
+    mostrarPopUp(fila) {
+        this.showModal = true;
+      this.descripcionModal = fila.description;
     },
-    watch:{
+    ...mapMutations(['registrarProducto']),
 
-    },    
-    methods:{
-        ...mapMutations(['registrarProducto']),
- 
+        //...mapMutations({add:'aquitoy'}),
+    
+        // calcularProducto: function (elemento){
+        //     elemento.total = elemento.cantidad*elemento.price;
+        //     console.log (elemento.total)
+        // },
+            // registrarProducto: function (producto){    
+            //     //retorna true o false si este objeto existe el arreglo
+            //     let existe = this.newProducts.some((element)=>{ 
+            //         return producto.id == element.id
+            //     });
+
+            // if(!existe){
+
+            //     let product ={
+            //         id:producto.id,
+            //         name: producto.name,
+            //         description: producto.description,
+            //         price: producto.price,
+            //         stock: producto.stock,
+            //         image: producto.image,
+            //         cantidad: 1,
+            //         total: producto.price,
+            //     }
+
+            //     this.newProducts.push(product);
+
+            // }else{
+
+            //     this.newProducts = this.newProducts.map((element)=>{
+
+            //         if(element.id === producto.id){
+
+            //             element.cantidad = element.cantidad+1; 
+            //             element.total = element.cantidad*element.price;
+            //             return element;
+
+            //         }else{
+                        
+            //             return element;
+            //         }
+
+            //     })
+            // }
+            // },
+            // eliminarProducto: function (producto){
+
+            // this.newProducts = this.newProducts.filter((element)=>{
+            //     return element.id != producto.id;
+
+            // })
+            // },
+
             buscarProducto: function (){
                 if (this.inputBuscador === ''){
                 this.$store.state.producto = this.$store.state.productoTotal;
