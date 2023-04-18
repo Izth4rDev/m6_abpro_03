@@ -5,7 +5,8 @@ export default createStore({
     state: {
       newProducts:[],
       productoTotal:[],
-      producto:[]
+      producto:[],
+      usuarioConectado:''
     },
 
     mutations: {
@@ -106,7 +107,12 @@ export default createStore({
             })
             state.producto = state.productoTotal;
             state.newProducts = []
-         }
+         },
+ 
+         grabarUsuario(State,email){
+            State.usuarioConectado = email
+          
+           }
       
     },
     
