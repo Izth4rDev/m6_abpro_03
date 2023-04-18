@@ -1,63 +1,5 @@
 <template>
     <headerComp></headerComp>
-    <carritoCompra></carritoCompra>
-    
-
-     <!-- <section class="carrito__compras">
-        <div class="container h-100 py-5">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-12">
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h3 class="fw-normal mb-0 text-black">Carrito de compra</h3>
-   
-                    </div>
-
-                    <div class="card rounded-3 mb-4">
-                        <div v-for="carro in newProducts" :key="carro.id" class="card-body p-4">
-                            <div class="row d-flex justify-content-between align-items-center">
-                            <div class="col-md-2 col-lg-2 col-xl-2">
-                                <img v-bind:src="carro.image" class="img-fluid rounded-3" alt="Cotton T-shirt">
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-3">
-                                <p class="lead fw-normal mb-2">{{carro.name}}</p>
-                                <p><span class="text-muted">Descripcion: </span>{{ carro.description }}</p>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                <button class="btn btn-link px-2"
-                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                <i class="fas fa-minus"></i>
-                                </button>
-
-                                <input id="form1" min="0" name="quantity" v-model="carro.cantidad" v-on:click="calcularProducto(carro)" type="number"
-                                class="form-control form-control-sm" />
-                                
-                                
-
-                                <button class="btn btn-link px-2"
-                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                <h5 class="mb-0">{{carro.price}}-{{carro.total}}</h5>
-                            </div>
-                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                <a href="#!" v-on:click="eliminarProducto(carro)" class="text-danger"><i class="fas fa-trash fa-lg"> X </i></a>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-body">
-                            <button v-on:click="vaciarCarro" type="button" class="btn-vaciar">Vaciar Carrito</button>
-                            <button type="button" class="btn-procesar">Procesar el pago</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
 
    <!-- Buscar productos    -->
    <div class="seccion__buscar">
@@ -66,7 +8,7 @@
     </div>
 
 <div class="container-fluid row justify-content-center gap-3 ">
- <template  v-for="fila in producto" :key="fila.name">
+ <template  v-for="fila in $store.state.producto" :key="fila.name">
         <div class="card col-3 mx-2 mt-4" v-if="fila.stock > 0" style="width: 18rem; margin: 3em;" >  
                 <img v-bind:src="fila.image" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -85,7 +27,6 @@
 <script>
 
 import headerComp from '../components/headerComp.vue'
-import carritoCompra from '../components/carritoCompra.vue'
 
 import {mapState, mapMutations} from 'vuex'
 //import store from 'store';
@@ -95,7 +36,7 @@ export default {
     name: "productoPage",
     components:{
         headerComp,
-        carritoCompra
+
     },
     data: function() {
         return {
@@ -114,65 +55,14 @@ export default {
     },    
     methods:{
         ...mapMutations(['registrarProducto']),
-        //...mapMutations({add:'aquitoy'}),
-    
-        // calcularProducto: function (elemento){
-        //     elemento.total = elemento.cantidad*elemento.price;
-        //     console.log (elemento.total)
-        // },
-            // registrarProducto: function (producto){    
-            //     //retorna true o false si este objeto existe el arreglo
-            //     let existe = this.newProducts.some((element)=>{ 
-            //         return producto.id == element.id
-            //     });
-
-            // if(!existe){
-
-            //     let product ={
-            //         id:producto.id,
-            //         name: producto.name,
-            //         description: producto.description,
-            //         price: producto.price,
-            //         stock: producto.stock,
-            //         image: producto.image,
-            //         cantidad: 1,
-            //         total: producto.price,
-            //     }
-
-            //     this.newProducts.push(product);
-
-            // }else{
-
-            //     this.newProducts = this.newProducts.map((element)=>{
-
-            //         if(element.id === producto.id){
-
-            //             element.cantidad = element.cantidad+1; 
-            //             element.total = element.cantidad*element.price;
-            //             return element;
-
-            //         }else{
-                        
-            //             return element;
-            //         }
-
-            //     })
-            // }
-            // },
-            // eliminarProducto: function (producto){
-
-            // this.newProducts = this.newProducts.filter((element)=>{
-            //     return element.id != producto.id;
-
-            // })
-            // },
+ 
             buscarProducto: function (){
                 if (this.inputBuscador === ''){
-                this.producto = this.productoTotal;
+                this.$store.state.producto = this.$store.state.productoTotal;
                 }else {            
                 
                 const searchTerm = this.inputBuscador.toLowerCase();
-                this.producto = this.producto.filter(element => {
+                this.$store.state.producto = this.$store.state.producto.filter(element => {
                 const name1 = element.name.toLowerCase();
                 const description1 = element.description.toLowerCase();
             
