@@ -34,7 +34,6 @@ data() {
     usuarioConectado: 'Invitado',
     }
     
-    
 },
 methods: {
      async login() {

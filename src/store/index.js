@@ -6,7 +6,9 @@ export default createStore({
       newProducts:[],
       productoTotal:[],
       producto:[],
-      usuarioConectado:''
+      usuarioConectado:'',
+      contador:0
+
     },
 
     mutations: {
@@ -14,6 +16,9 @@ export default createStore({
             //payload = productos
             registrarProducto(state, payload){    
              console.log(payload)
+             state.contador = state.contador+1
+             console.log(state.contador)
+
                 //retorna true o false si este objeto existe el arreglo
                 let existe = state.newProducts.some((element)=>{ 
                     return payload.id == element.id
@@ -48,6 +53,7 @@ export default createStore({
                     }
 
                 })
+        
             }
             },
             eliminarProducto(state, payload){
@@ -56,6 +62,7 @@ export default createStore({
                     return element.id != payload.id;
 
                     })
+                    state.contador = state.contador-1
                 }
             },    
 

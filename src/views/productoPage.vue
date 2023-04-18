@@ -63,7 +63,7 @@
     </div>
 
 <div class="container-fluid row justify-content-center gap-3 ">
- <template  v-for="fila in producto" :key="fila.name">
+ <template  v-for="fila in $store.state.producto" :key="fila.name">
         <div class="card col-3 mx-2 mt-4" v-if="fila.stock > 0" style="width: 18rem; margin: 3em;" >  
                 <img v-bind:src="fila.image" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -106,70 +106,22 @@ export default {
     computed: {
     ...mapState(['newProducts']),
     ...mapState(['productoTotal']),
-    ...mapState(['producto'])
+    //...mapState(['producto'])
+
+    },
+    watch:{
 
     },    
     methods:{
         ...mapMutations(['registrarProducto']),
-        //...mapMutations({add:'aquitoy'}),
-    
-        // calcularProducto: function (elemento){
-        //     elemento.total = elemento.cantidad*elemento.price;
-        //     console.log (elemento.total)
-        // },
-            // registrarProducto: function (producto){    
-            //     //retorna true o false si este objeto existe el arreglo
-            //     let existe = this.newProducts.some((element)=>{ 
-            //         return producto.id == element.id
-            //     });
-
-            // if(!existe){
-
-            //     let product ={
-            //         id:producto.id,
-            //         name: producto.name,
-            //         description: producto.description,
-            //         price: producto.price,
-            //         stock: producto.stock,
-            //         image: producto.image,
-            //         cantidad: 1,
-            //         total: producto.price,
-            //     }
-
-            //     this.newProducts.push(product);
-
-            // }else{
-
-            //     this.newProducts = this.newProducts.map((element)=>{
-
-            //         if(element.id === producto.id){
-
-            //             element.cantidad = element.cantidad+1; 
-            //             element.total = element.cantidad*element.price;
-            //             return element;
-
-            //         }else{
-                        
-            //             return element;
-            //         }
-
-            //     })
-            // }
-            // },
-            // eliminarProducto: function (producto){
-
-            // this.newProducts = this.newProducts.filter((element)=>{
-            //     return element.id != producto.id;
-
-            // })
-            // },
+ 
             buscarProducto: function (){
                 if (this.inputBuscador === ''){
-                this.producto = this.productoTotal;
+                this.$store.state.producto = this.$store.state.productoTotal;
                 }else {            
                 
                 const searchTerm = this.inputBuscador.toLowerCase();
-                this.producto = this.producto.filter(element => {
+                this.$store.state.producto = this.$store.state.producto.filter(element => {
                 const name1 = element.name.toLowerCase();
                 const description1 = element.description.toLowerCase();
             

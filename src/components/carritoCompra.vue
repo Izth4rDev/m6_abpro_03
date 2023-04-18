@@ -1,6 +1,10 @@
 <template>
     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#carrito__compra">
         <img src="../assets/shopping-cart.png" width="18" alt="carrito">
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                     {{contador}}
+                 <span class="visually-hidden">unread messages</span>
+                 </span>
     </button>
 
 <div class="modal fade" id="carrito__compra" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -15,12 +19,6 @@
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12">
                         <div class="d-flex justify-content-between align-items-center mb-4">
-                            <button type="button" class="btn-close" data-bs-target="carrito__modal" data-bs-dismiss="#carrito__modal" aria-label="Close"></button>
-                        <h3 class="fw-normal mb-0 text-black">Carrito de compra</h3>
-                    <!-- <div>
-                        <p class="mb-0"><span class="text-muted">Ordenado por:</span> <a href="#!" class="text-body">precio <i
-                            class="fas fa-angle-down mt-1"></i></a></p>
-                    </div> -->
                     </div>
 
                     <div class="card rounded-3 mb-4">
@@ -40,8 +38,7 @@
                                 </button>
 
                                 <input id="form1" min="1" name="quantity" v-model="carro.cantidad" v-on:input="calcularProducto(carro)" type="number"
-                                class="form-control form-control-sm" />
-                                
+                                class="form-control form-control-sm w-10" />
 
                                 <button class="btn btn-link px-2"
                                 onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
@@ -69,10 +66,7 @@
             </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
-        <button type="button" v-on:click="logout" class="btn btn-success" data-bs-dismiss="modal">Si</button>
-      </div>
+
     </div>
   </div>
 </div>
@@ -81,7 +75,7 @@
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12">
                         <div class="d-flex justify-content-between align-items-center mb-4">
-                            <button type="button" class="btn-close" data-bs-target="carrito__modal" data-bs-dismiss="#carrito__modal" aria-label="Close"></button>
+
                         <h3 class="fw-normal mb-0 text-black">Carrito de compra</h3>
                     <!-- <div>
                         <p class="mb-0"><span class="text-muted">Ordenado por:</span> <a href="#!" class="text-body">precio <i
@@ -152,6 +146,7 @@ data(){
 
 computed: {
     ...mapState(['newProducts']),
+    ...mapState(['contador'])
    
   },
 
@@ -181,7 +176,7 @@ text-align: center;
 transition: color 100ms;
 vertical-align: baseline;
 user-select: none;
--webkit-user-select: none;
+/*-webkit-user-select: none;*/
 font-family: 'Montserrat', sans-serif;
 }
 
@@ -200,5 +195,13 @@ vertical-align: baseline;
 user-select: none;
 -webkit-user-select: none;
 font-family: 'Montserrat', sans-serif;
+}
+
+.btn-vaciar {
+    margin-right: 0!important;
+} 
+
+.modal {
+    --bs-modal-width: 900px!important;
 }
 </style>
