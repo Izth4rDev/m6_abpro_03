@@ -8,8 +8,6 @@
               <ul id="list-contenedor" class="d-flex justify-content-around align-items-center">
                   <router-link class="nav-link px-3" to="/HomeRoot">Inicio</router-link>
                   <router-link class="nav-link px-3" to="/productoPage">Productos</router-link>
-                  <!-- <router-link class="nav-link px-3" to=""><img src="../assets/shopping-cart.png" width="18" alt="carrito"></router-link> -->
-                  <!-- <router-link class="nav-link px-3" to="/HomeRoot">Hola usuario1</router-link> -->
                   <carritoCompra></carritoCompra>
                   <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Logout
