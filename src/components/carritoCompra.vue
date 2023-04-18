@@ -1,9 +1,9 @@
 <template>
-    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#carrito__compra">
         <img src="../assets/shopping-cart.png" width="18" alt="carrito">
     </button>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="carrito__compra" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -135,7 +135,7 @@
             </div>
         </div>
     </section>
-</template>    
+</template>   
 
 
 <script>
