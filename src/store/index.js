@@ -16,8 +16,8 @@ export default createStore({
             //payload = productos
             registrarProducto(state, payload){    
              console.log(payload)
-             state.contador = state.contador+1
-             console.log(state.contador)
+            
+           
 
                 //retorna true o false si este objeto existe el arreglo
                 let existe = state.newProducts.some((element)=>{ 
@@ -25,6 +25,7 @@ export default createStore({
                 });
                
             if(!existe){
+                state.contador = state.contador+1
                 let product ={
                     id:payload.id,
                     name: payload.name,
@@ -70,6 +71,7 @@ export default createStore({
                 if (state.newProducts.length){
                     if (window.confirm("¿Esta seguro de vaciar el carro de productos?")){
                     state.newProducts = []
+                    state.contador = 0
                     }   
                 }    
             },
@@ -89,15 +91,15 @@ export default createStore({
             console.log(cantidad);
 
           },
+//19-04-20023
+        //   cargarProducto(state, arreglo){
+        //      state.productoTotal=arreglo;
+        //   },
 
-          cargarProducto(state, arreglo){
-             state.productoTotal=arreglo;
-          },
-
-          cargarProducto2(state,arreglo){
-            state.producto = arreglo;
-          },
-
+        //   cargarProducto2(state,arreglo){
+        //     state.producto = arreglo;
+        //   },
+//fin 19/04/2023
          procesarPago(state){
             let indice
             state.newProducts.forEach((element)=>{
@@ -113,13 +115,15 @@ export default createStore({
             }
             })
             state.producto = state.productoTotal;
+            state.contador = 0
             state.newProducts = []
          },
- 
-         grabarUsuario(State,email){
-            State.usuarioConectado = email
+        //19-04-20023
+        //  grabarUsuario(State,email){
+        //     State.usuarioConectado = email
           
-           }
+        //    }
+        //fin 19-04-20023
       
     },
     

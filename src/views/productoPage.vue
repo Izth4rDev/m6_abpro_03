@@ -13,10 +13,31 @@
                 <div class="card-body">
                     <h5 class="card-title">{{fila.name}}</h5>
                     <p class="card-text">Material:{{fila.description}}</p>
-                    <p class="card-text">$ {{fila.price}}</p> 
+                    
+                    <!-- <p class="card-text">$ {{fila.price}}</p>  -->
+
+                    <p class="mb-3"> Precio:  {{new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency' }).format(fila.price)}}</p>
                     <p class="card-text">Stock: {{fila.stock}}</p>
+                    <button class = "btn btn-outline-success" data-bs-toggle="modal" :data-bs-target="'#myModal' + fila.id" >Ver descripción </button> 
                     <a href="#" v-on:click="registrarProducto(fila)" class="btn-agregar">Agregar</a>
                 </div>
+
+                <!-- Ventana modal descripcion de producto-->
+                <div class="modal fade" :id="'myModal' + fila.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                     <div class="modal-dialog">
+                          <div class="modal-content">
+                               <div class="modal-header">
+                                   <h5 class="modal-title" id="exampleModalLabel">{{fila.name}}</h5>
+                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                               </div>
+                               <div class="modal-body">
+                                   {{fila.description}}
+                               </div>
+                            </div>
+                     </div>
+                </div>
+                <!-- Fin Ventana modal -->                     
+                
         </div>
     </template>
 </div>
@@ -28,7 +49,11 @@
 import headerComp from '../components/headerComp.vue'
 import footerComp from '../components/footerComp.vue'
 
-import {mapState, mapMutations} from 'vuex'
+//inicio 19-04-2023
+//import {mapState, mapMutations} from 'vuex'
+// fin 19-04-2023
+
+import { mapMutations} from 'vuex'
 //import store from 'store';
 
 export default {
@@ -40,16 +65,23 @@ export default {
     },
     data: function() {
         return {
-        producto2: [],
         // newProducts:[],
-        productoTotal2:[],
+
+        //inicio 19-04-2023
+        // producto2: [],//inicio 19-04-2023
+        // productoTotal2:[]
+        // fin 19-04-2023
+
         inputBuscador: ''
         };
         },
 
     computed: {
-    ...mapState(['newProducts']),
-    ...mapState(['productoTotal']),
+    //inicio 19-04-2023
+    // ...mapState(['newProducts']),
+    // ...mapState(['productoTotal']),
+    // fin 19-04-2023
+
     //...mapState(['producto'])
 
     },
@@ -75,9 +107,7 @@ export default {
                 }
                 
             },
-            //  vaciarCarro(){
-            //    this.newProducts = []
-            // },
+  
             async extraerData() {
                 let resultado;
             try {
@@ -94,9 +124,13 @@ export default {
             }
         },
         async mounted() {
-            this.producto2 = await this.extraerData();
-            this.$store.commit('cargarProducto', this.producto2)
-            this.$store.commit('cargarProducto2', this.producto2)
+            this.$store.state.producto = await this.extraerData();
+            this.$store.state.productoTotal = this.$store.state.producto
+            //19-04-2023
+            // this.producto2 = await this.extraerData();
+            // this.$store.commit('cargarProducto', this.producto2)
+            // this.$store.commit('cargarProducto2', this.producto2)
+             // fin 19-04-2023
         }
 
     }

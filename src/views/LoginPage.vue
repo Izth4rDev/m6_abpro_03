@@ -50,14 +50,16 @@ methods: {
             if (this.password === resultado[0].password && this.email === resultado[0].correo) {
                 this.error = 'Inicio de sesión exitoso!'
                 this.clase = 'success'
-                
-                this.$store.commit('grabarUsuario', this.email)
+                this.$store.state.usuarioConectado = this.email 
+                //19-04-20023
+                //this.$store.commit('grabarUsuario', this.email)
+                //fin 19-04-2023
      
                 this.$router.push('/HomeRoot');
             } else {
                 this.error = 'Error de autenticación. Por favor, verifica tus datos.';
                 this.clase = 'error'
-                this.usuarioConectado = ''
+                this.$store.state.usuarioConectado = ''
             }
 
             } catch (error) {

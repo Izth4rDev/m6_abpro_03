@@ -12,7 +12,7 @@
                   <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Logout
                   </button>
-                  <p class="mb-0">{{usuarioConectado}}</p>
+                  <p class="mb-0">{{$store.state.usuarioConectado}}</p>
               </ul>
           </nav>
       </div>
@@ -28,7 +28,7 @@
     </div>
     <div class="modal-body">
       Esta seguro que desea salir
-      <p>{{usuarioConectado}}</p>
+      <p>{{$store.state.usuarioConectado}}</p>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
@@ -41,7 +41,9 @@
 
 <script>
 import carritoCompra from './carritoCompra.vue';
-import {mapState} from 'vuex'
+//19-04-2023
+//import {mapState} from 'vuex'
+// fin 19-04-20023
 export default {
     data (){
     },
@@ -50,11 +52,15 @@ export default {
     },
     methods:{
        logout(){
+        this.$store.state.newProducts = []
+        this.$store.state.contador = 0
         this.$router.push('/');
        }
     },
     computed:{
-     ...mapState(['usuarioConectado'])
+      //19-04-2023
+     //...mapState(['usuarioConectado'])
+     //fin 19-04-2023
      }
 }
 </script>
